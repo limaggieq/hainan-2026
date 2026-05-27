@@ -444,6 +444,31 @@
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ACCORDION ITINERARY */
+  .itin-accordion { max-width: 860px; margin: 0 auto; }
+  .itin-segment-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); padding: 40px 0 12px; border-top: 1px solid var(--border); margin-top: 8px; }
+  .itin-segment-label:first-of-type { border-top: none; padding-top: 0; }
+  .itin-day { border-bottom: 1px solid var(--border); }
+  .itin-header { display: flex; align-items: center; gap: 24px; padding: 22px 0; cursor: pointer; user-select: none; }
+  .itin-header:hover .itin-title { color: var(--gold); }
+  .itin-meta { min-width: 100px; flex-shrink: 0; }
+  .itin-date { display: block; font-size: 0.88rem; font-weight: 700; color: var(--navy); }
+  .itin-dow { display: block; font-size: 0.72rem; color: #999; letter-spacing: 0.04em; }
+  .itin-special { display: block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+  .itin-title { flex: 1; font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--navy); transition: color 0.2s; }
+  .itin-chevron { font-size: 0.8rem; color: var(--gold); transition: transform 0.3s; flex-shrink: 0; }
+  .itin-header.open .itin-chevron { transform: rotate(180deg); }
+  .itin-body { display: none; padding: 4px 0 28px 124px; }
+  .itin-body.open { display: block; }
+  .itin-block { display: flex; gap: 20px; margin-bottom: 14px; }
+  .itin-block:last-child { margin-bottom: 0; }
+  .itin-time { min-width: 84px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); padding-top: 3px; flex-shrink: 0; }
+  .itin-desc { font-size: 0.9rem; color: var(--text); line-height: 1.78; }
+  @media (max-width: 768px) {
+    .itin-body { padding-left: 0; }
+    .itin-meta { min-width: 76px; }
+  }
 </style>
 </head>
 <body>
@@ -683,84 +708,351 @@
 <!-- TIMELINE -->
 <section class="timeline-section" id="timeline">
   <div class="section-tag">Day by Day</div>
-  <h2 class="section-title" style="margin-bottom:48px;">The full itinerary</h2>
+  <h2 class="section-title" style="margin-bottom:16px;">The full itinerary</h2>
+  <p class="section-lead" style="max-width:520px;margin:0 auto 56px;">Dec 18–30 · Click any day to expand.</p>
 
-  <div class="timeline fade-up">
-    <div class="timeline-item">
-      <div class="timeline-date">Wed Dec 16<br>Evening</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">Depart LAX → Hong Kong (overnight flight)<span>Cathay Pacific via HKG</span></div>
+  <div class="itin-accordion fade-up">
+
+    <div class="itin-segment-label">Segment A &nbsp;·&nbsp; Haikou &nbsp;·&nbsp; Dec 18–21</div>
+
+    <div class="itin-day">
+      <div class="itin-header" onclick="toggleDay(this)">
+        <div class="itin-meta"><span class="itin-date">Dec 18</span><span class="itin-dow">Friday</span></div>
+        <div class="itin-title">Arrive Haikou</div>
+        <div class="itin-chevron">▾</div>
+      </div>
+      <div class="itin-body">
+        <div class="itin-block">
+          <div class="itin-time">Afternoon</div>
+          <div class="itin-desc">Arrive Haikou airport. Taxi to Westin Haikou. Easy first evening — dinner at hotel or nearby. Early night to start adjusting to China time.</div>
+        </div>
+      </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Thu Dec 17</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">Hong Kong layover — 8h 55min<span>CX Business Lounge</span></div>
+
+    <div class="itin-day">
+      <div class="itin-header" onclick="toggleDay(this)">
+        <div class="itin-meta"><span class="itin-date">Dec 19</span><span class="itin-dow">Saturday</span></div>
+        <div class="itin-title">Roots Visit + Night Market</div>
+        <div class="itin-chevron">▾</div>
+      </div>
+      <div class="itin-body">
+        <div class="itin-block">
+          <div class="itin-time">7:30 am</div>
+          <div class="itin-desc">Lao ba cha — Hainan's traditional tea house breakfast. This is how locals start their day: a pot of tea, steamed dumplings, coconut milk cake. Similar to dim sum but simpler — a few standard offerings, no carts rolling by. The point is the pace, not the food.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">8:30 am</div>
+          <div class="itin-desc">Qilou Old Street — 1920s-30s arcade shophouses along Zhongshan Road. Covered colonnades, weathered facades, Southeast Asian colonial influence. Browse old candy shops and coconut sweets. Go early while it's still quiet.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">9:30 am</div>
+          <div class="itin-desc">Roots visit: walk to Maggie's elementary school (she attended age 8-10), her childhood villa, and the coconut drink factory that has been operating around the corner since the late 1980s. About two hours on the same ground she grew up on.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">2:00 pm</div>
+          <div class="itin-desc">Hotel rest.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">6:30 pm</div>
+          <div class="itin-desc">Dinner: Coconut Chicken Hot Pot — whole chicken simmered in fresh coconut water at the table. Hainan's signature dish.</div>
+        </div>
+      </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Fri Dec 18</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">Arrive Haikou<span>Check in Westin · Easy first evening</span></div>
+
+    <div class="itin-day">
+      <div class="itin-header" onclick="toggleDay(this)">
+        <div class="itin-meta"><span class="itin-date">Dec 20</span><span class="itin-dow">Sunday</span></div>
+        <div class="itin-title">Volcanic Geopark + Night Market</div>
+        <div class="itin-chevron">▾</div>
+      </div>
+      <div class="itin-body">
+        <div class="itin-block">
+          <div class="itin-time">7:00 am</div>
+          <div class="itin-desc">Local noodle breakfast near the hotel — Hainan mixed noodles or Baoluo soup noodles. Quick, local, better than the buffet.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">8:00 am</div>
+          <div class="itin-desc">Hainan Volcanic Cluster National Geopark (30-40 min from Haikou). Main feature: a 2km underground lava tube carved by volcanic flow 10,000 years ago. Walk through it. Genuinely impressive — quiet in the morning before tour groups arrive.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">2:00 pm</div>
+          <div class="itin-desc">Hotel rest.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">6:30 pm</div>
+          <div class="itin-desc">Neighborhood night market — real food vendors, not a tourist market. Grilled skewers, fresh fruit stalls, local snacks. Cash, loud, authentic.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">7:30 pm</div>
+          <div class="itin-desc">Coconut Chicken Hot Pot dinner (if not done Dec 19), or eat at the night market.</div>
+        </div>
+      </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Sat Dec 19</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">Haikou — Qilou Old Street + roots visit<span>Tea house breakfast · Old neighborhood · Coconut drink factory</span></div>
+
+    <div class="itin-day">
+      <div class="itin-header" onclick="toggleDay(this)">
+        <div class="itin-meta"><span class="itin-date">Dec 21</span><span class="itin-dow">Monday</span></div>
+        <div class="itin-title">High Speed Rail to Sanya</div>
+        <div class="itin-chevron">▾</div>
+      </div>
+      <div class="itin-body">
+        <div class="itin-block">
+          <div class="itin-time">7:00 am</div>
+          <div class="itin-desc">Hotel breakfast. Check out.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">8:30 am</div>
+          <div class="itin-desc">Eastern Ring High Speed Rail, Haikou to Sanya. 1.5 hours — flat coastal route along the east side of the island. Modern, comfortable, scenic. No car sickness.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">10:30 am</div>
+          <div class="itin-desc">Arrive Atlantis Sanya. Check in. Imperial Club lounge access while settling in.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">4:00 pm</div>
+          <div class="itin-desc">First look at the aquarium. Then Haitang Bay beach — 26°C.</div>
+        </div>
+      </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Sun Dec 20</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">Haikou — Volcanic Geopark + night market<span>Lava tube · Neighborhood food market</span></div>
+
+    <div class="itin-segment-label">Segment B &nbsp;·&nbsp; Atlantis Sanya &nbsp;·&nbsp; Dec 21–23</div>
+
+    <div class="itin-day">
+      <div class="itin-header" onclick="toggleDay(this)">
+        <div class="itin-meta"><span class="itin-date">Dec 22</span><span class="itin-dow">Tuesday</span></div>
+        <div class="itin-title">Full Aquarium Day</div>
+        <div class="itin-chevron">▾</div>
+      </div>
+      <div class="itin-body">
+        <div class="itin-block">
+          <div class="itin-time">8:00 am</div>
+          <div class="itin-desc">Club lounge breakfast.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">9:00 am</div>
+          <div class="itin-desc">Lost Chambers aquarium — 2-3 hours. Glass tunnels with sharks and rays swimming overhead. Themed passages through the ancient sunken city. Interactive touch pools. Jordan sets the pace entirely.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">2:00 pm</div>
+          <div class="itin-desc">Afternoon rest.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">3:00 pm</div>
+          <div class="itin-desc">Water park and Haitang Bay beach. 26°C water, calm and clear.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">5:00 pm</div>
+          <div class="itin-desc">Optional: return to the aquarium. Different fish are active at different times of day.</div>
+        </div>
+      </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Mon Dec 21</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">High speed rail → Sanya · Check in Atlantis<span>1.5hr scenic coastal route · Arrive midday</span></div>
+
+    <div class="itin-day">
+      <div class="itin-header" onclick="toggleDay(this)">
+        <div class="itin-meta"><span class="itin-date">Dec 23</span><span class="itin-dow">Wednesday</span></div>
+        <div class="itin-title">Move to Park Hyatt Sanya</div>
+        <div class="itin-chevron">▾</div>
+      </div>
+      <div class="itin-body">
+        <div class="itin-block">
+          <div class="itin-time">9:00 am</div>
+          <div class="itin-desc">Leisurely Club lounge breakfast. Last look at the aquarium lobby.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">10:30 am</div>
+          <div class="itin-desc">Short taxi to Park Hyatt Sanya Sunny Bay Resort — same bay, 10-15 minutes. The main event begins.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">Afternoon</div>
+          <div class="itin-desc">Settle in. Pool and Haitang Bay beach. No agenda — quiet day before Christmas Eve.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">7:00 pm</div>
+          <div class="itin-desc">First dinner at Park Hyatt Sanya.</div>
+        </div>
+      </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Tue Dec 22</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">Atlantis — Full aquarium day + beach + water park<span>Multiple aquarium visits · Haitang Bay beach</span></div>
+
+    <div class="itin-segment-label">Segment C &nbsp;·&nbsp; Park Hyatt Sanya &nbsp;·&nbsp; Dec 23–30</div>
+
+    <div class="itin-day">
+      <div class="itin-header" onclick="toggleDay(this)">
+        <div class="itin-meta"><span class="itin-date">Dec 24</span><span class="itin-dow">Thursday</span><span class="itin-special">Christmas Eve</span></div>
+        <div class="itin-title">Forest Park Gondola + Christmas Eve</div>
+        <div class="itin-chevron">▾</div>
+      </div>
+      <div class="itin-body">
+        <div class="itin-block">
+          <div class="itin-time">9:00 am</div>
+          <div class="itin-desc">Tropical Paradise Forest Park (20-30 min taxi). Aerial gondola over the tropical jungle canopy with views of Sanya Bay and the South China Sea. Bird performance show: macaws, cockatoos, owls — interactive and hands-on. Butterfly garden with 50+ tropical species.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">12:00 pm</div>
+          <div class="itin-desc">Return to hotel. Lunch at Park Hyatt.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">2:00 pm</div>
+          <div class="itin-desc">Afternoon rest.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">4:00 pm</div>
+          <div class="itin-desc">Park Hyatt Christmas Eve program: tree lighting, children's activities, Santa visit.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">7:00 pm</div>
+          <div class="itin-desc">Christmas Eve prix-fixe dinner at the hotel.</div>
+        </div>
+      </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Wed Dec 23</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">Move to Sanya luxury hotel<span>Settle in · First Christmas Eve eve</span></div>
+
+    <div class="itin-day">
+      <div class="itin-header" onclick="toggleDay(this)">
+        <div class="itin-meta"><span class="itin-date">Dec 25</span><span class="itin-dow">Friday</span><span class="itin-special">Christmas Day</span></div>
+        <div class="itin-title">Wuzhizhou Island Reef + Christmas Dinner</div>
+        <div class="itin-chevron">▾</div>
+      </div>
+      <div class="itin-body">
+        <div class="itin-block">
+          <div class="itin-time">7:00 am</div>
+          <div class="itin-desc">Early breakfast. First boat of the day.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">8:45 am</div>
+          <div class="itin-desc">5-minute speedboat from the hotel pier to Wuzhizhou Island. Glass-bottom boat over coral reef — tropical fish and live coral visible through the floor without getting wet. Then snorkeling in shallow warm water with lifejackets and guides. December water is 26°C.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">12:30 pm</div>
+          <div class="itin-desc">Lunch on the island: fresh seafood, fish caught that morning. Then speedboat back to hotel.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">2:00 pm</div>
+          <div class="itin-desc">Rest. Beach walk at sunset.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">7:00 pm</div>
+          <div class="itin-desc">Park Hyatt Christmas Day prix-fixe dinner.</div>
+        </div>
+      </div>
     </div>
-    <div class="timeline-item highlight-row">
-      <div class="timeline-date">Thu Dec 24<br>Christmas Eve</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">Forest Park gondola over jungle canopy → Christmas Eve dinner<span>Aerial cable car · Bird show · Prix-fixe</span></div>
+
+    <div class="itin-day">
+      <div class="itin-header" onclick="toggleDay(this)">
+        <div class="itin-meta"><span class="itin-date">Dec 26</span><span class="itin-dow">Saturday</span></div>
+        <div class="itin-title">Resort Day</div>
+        <div class="itin-chevron">▾</div>
+      </div>
+      <div class="itin-body">
+        <div class="itin-block">
+          <div class="itin-time">All day</div>
+          <div class="itin-desc">Full day at Park Hyatt. Pool, Haitang Bay beach, no schedule. Late breakfast at leisure. This is the day with nothing on it.</div>
+        </div>
+      </div>
     </div>
-    <div class="timeline-item highlight-row">
-      <div class="timeline-date">Fri Dec 25<br>Christmas Day</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">Wuzhizhou Island — coral reef + snorkeling → Christmas dinner<span>Speedboat · Glass-bottom boat · Island seafood lunch · Prix-fixe dinner</span></div>
+
+    <div class="itin-day">
+      <div class="itin-header" onclick="toggleDay(this)">
+        <div class="itin-meta"><span class="itin-date">Dec 27</span><span class="itin-dow">Sunday</span></div>
+        <div class="itin-title">Nanshan Temple + Live Seafood Dinner</div>
+        <div class="itin-chevron">▾</div>
+      </div>
+      <div class="itin-body">
+        <div class="itin-block">
+          <div class="itin-time">9:00 am</div>
+          <div class="itin-desc">Nanshan Cultural Area (45 min taxi). Walk a long footbridge out into the South China Sea — and halfway across you realize the statue is 30 stories tall. The 108-meter Guanyin stands in the water. Buddhist complex: incense halls, prayer bells, temple courtyards. Go at 9am before the tour buses.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">11:30 am</div>
+          <div class="itin-desc">Luhuitou Hilltop Park (17 min from Nanshan). Panoramic views over Sanya Bay and the South China Sea in three directions. Named after a Li legend: a hunter chased a deer to this cliff, where it transformed into a woman.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">12:45 pm</div>
+          <div class="itin-desc">Lunch near Luhuitou, then return to hotel.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">2:00 pm</div>
+          <div class="itin-desc">Afternoon rest.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">7:00 pm</div>
+          <div class="itin-desc">Live seafood dinner: walk in, choose your fish and crab from the tank, specify the cooking method. Grouper, shrimp, Hele crab. Jordan orders her own whole fish.</div>
+        </div>
+      </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Sat Dec 26</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">Resort day<span>Beach · Pool · Full rest</span></div>
+
+    <div class="itin-day">
+      <div class="itin-header" onclick="toggleDay(this)">
+        <div class="itin-meta"><span class="itin-date">Dec 28</span><span class="itin-dow">Monday</span></div>
+        <div class="itin-title">Binglanggu Li & Miao Cultural Village</div>
+        <div class="itin-chevron">▾</div>
+      </div>
+      <div class="itin-body">
+        <div class="itin-block">
+          <div class="itin-time">8:30 am</div>
+          <div class="itin-desc">Hired car north to Binglanggu Li & Miao Cultural Heritage Village, Baoting County — 80km, about 1.5 hours. Arrive early before the park fills.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">10:00 am</div>
+          <div class="itin-desc">The Li and Miao people have lived on Hainan for 3,000 years. Traditional longhouse stilt village. Bamboo pole dance: jump between moving bamboo poles to the rhythm. Li backstrap loom weaving demonstration. Live cultural performance: boat dance, fire ceremony, Miao silver headdress procession. Bill's family has Hmong roots — the Miao people here are the same ethnic family, separated by geography and migration over centuries.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">12:30 pm</div>
+          <div class="itin-desc">Lunch on-site: grilled fish in banana leaves, bamboo rice, taro.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">1:30 pm</div>
+          <div class="itin-desc">Return to Sanya. Back at hotel by 3pm.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">7:00 pm</div>
+          <div class="itin-desc">Dinner: Tianfulou — the four classic Hainan dishes: Wenchang chicken, Jiaji duck, Dongshan lamb, Hele crab.</div>
+        </div>
+      </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Sun Dec 27</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">Nanshan Temple → live seafood dinner<span>108m Guanyin statue in the sea · Pick-your-fish dinner</span></div>
+
+    <div class="itin-day">
+      <div class="itin-header" onclick="toggleDay(this)">
+        <div class="itin-meta"><span class="itin-date">Dec 29</span><span class="itin-dow">Tuesday</span></div>
+        <div class="itin-title">Resort Day + Sunset Catamaran</div>
+        <div class="itin-chevron">▾</div>
+      </div>
+      <div class="itin-body">
+        <div class="itin-block">
+          <div class="itin-time">Morning</div>
+          <div class="itin-desc">Pool and Haitang Bay beach. No agenda until afternoon.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">4:00 pm</div>
+          <div class="itin-desc">Private catamaran from Haitang Bay pier — steps from the hotel. 2.5-3 hours on the South China Sea. Snorkeling gear and cold drinks on board. Sunset at 5:45pm on the water. Last look at the sea before flying home.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">7:30 pm</div>
+          <div class="itin-desc">Dinner at Park Hyatt Sanya. Last dinner on property.</div>
+        </div>
+      </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Mon Dec 28</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">Binglanggu Li & Miao Cultural Village — full day trip<span>80km north · Bamboo dance · Longhouse village · Traditional lunch</span></div>
+
+    <div class="itin-day">
+      <div class="itin-header" onclick="toggleDay(this)">
+        <div class="itin-meta"><span class="itin-date">Dec 30</span><span class="itin-dow">Wednesday</span></div>
+        <div class="itin-title">Home</div>
+        <div class="itin-chevron">▾</div>
+      </div>
+      <div class="itin-body">
+        <div class="itin-block">
+          <div class="itin-time">Morning</div>
+          <div class="itin-desc">Hotel breakfast. Final walk on Haitang Bay beach. Check out by 9:30am.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">10:15 am</div>
+          <div class="itin-desc">High Speed Rail back to Haikou (1.5 hours). Lunch near the airport.</div>
+        </div>
+        <div class="itin-block">
+          <div class="itin-time">4:50 pm</div>
+          <div class="itin-desc">Fly Haikou to Hong Kong. Connection to Los Angeles. Home by evening.</div>
+        </div>
+      </div>
     </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Tue Dec 29</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">Resort day → sunset catamaran<span>Beach morning · Private charter 4–7pm</span></div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">Wed Dec 30</div>
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">HSR → Haikou → fly home<span>Depart HAK 4:50pm → HKG → LAX · Home by evening</span></div>
-    </div>
+
   </div>
 </section>
 
@@ -850,6 +1142,12 @@
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('seg-' + id).classList.add('active');
     btn.classList.add('active');
+  }
+
+  // Accordion
+  function toggleDay(header) {
+    header.classList.toggle('open');
+    header.nextElementSibling.classList.toggle('open');
   }
 
   // Scroll fade-up
