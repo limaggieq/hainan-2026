@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hainan Winter Break 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0A2540;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --cream: #F8F4EE;
+    --white: #ffffff;
+    --text: #1a1a1a;
+    --muted: #666;
+    --border: #e0d8cc;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    transition: all 0.3s ease;
+  }
+  nav.scrolled {
+    background: rgba(10,37,64,0.97);
+    backdrop-filter: blur(12px);
+    padding: 14px 48px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    position: relative; height: 100vh; min-height: 700px;
+    display: flex; align-items: flex-end;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('images/hero.jpg');
+    background-size: cover; background-position: center 40%;
+    transform: scale(1.05);
+    transition: transform 8s ease;
+  }
+  .hero-bg.loaded { transform: scale(1); }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,37,64,0.92) 0%, rgba(10,37,64,0.3) 50%, rgba(0,0,0,0.1) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 64px 80px;
+    max-width: 900px;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    color: var(--white);
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .hero-title em { color: var(--gold-light); font-style: italic; }
+  .hero-subtitle {
+    color: rgba(255,255,255,0.75);
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: 48px;
+    max-width: 560px;
+  }
+  .hero-stats {
+    display: flex; gap: 48px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 32px;
+  }
+  .hero-stat-label {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .hero-stat-value {
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-indicator {
+    position: absolute; bottom: 32px; right: 48px; z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
+
+  /* SECTIONS */
+  section { padding: 100px 80px; }
+  .section-tag {
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .section-lead {
+    font-size: 1.1rem; color: var(--muted);
+    max-width: 680px; line-height: 1.75;
+    margin-bottom: 48px;
+  }
+
+  /* ABOUT HAINAN */
+  .about { background: var(--cream); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 1.05rem; color: #333; line-height: 1.85;
+    margin-bottom: 20px;
+  }
+  .about-facts {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+  }
+  .fact {
+    background: var(--white); padding: 28px 24px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .fact:nth-child(even) { border-right: none; }
+  .fact-icon { font-size: 1.5rem; margin-bottom: 10px; }
+  .fact-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 4px; }
+  .fact-value { font-size: 1rem; font-weight: 600; color: var(--navy); }
+
+  /* SEGMENTS */
+  .segments { background: var(--white); padding-top: 80px; }
+  .segment-tabs {
+    display: flex; gap: 0; margin-bottom: 0;
+    border-bottom: 2px solid var(--border);
+  }
+  .tab-btn {
+    padding: 16px 36px;
+    background: none; border: none; cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    color: var(--muted);
+    position: relative;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .tab-btn::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 2px; background: var(--navy);
+    transform: scaleX(0); transition: transform 0.25s ease;
+  }
+  .tab-btn.active { color: var(--navy); font-weight: 600; }
+  .tab-btn.active::after { transform: scaleX(1); }
+
+  .segment-panel { display: none; }
+  .segment-panel.active { display: block; }
+
+  .segment-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    min-height: 560px;
+    margin-top: 0;
+  }
+  .segment-photo {
+    background-size: cover; background-position: center;
+    min-height: 500px;
+  }
+  .segment-info {
+    padding: 56px 60px;
+    background: var(--navy);
+    color: var(--white);
+  }
+  .segment-dates {
+    font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  .segment-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .segment-hotel {
+    font-size: 0.9rem; color: rgba(255,255,255,0.5);
+    margin-bottom: 28px; padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .segment-desc {
+    font-size: 0.95rem; color: rgba(255,255,255,0.75);
+    line-height: 1.8; margin-bottom: 28px;
+  }
+  .segment-activities { list-style: none; }
+  .segment-activities li {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 0.9rem; color: rgba(255,255,255,0.8);
+    margin-bottom: 14px; line-height: 1.5;
+  }
+  .segment-activities li::before {
+    content: '→'; color: var(--gold);
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .segment-nights {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    font-size: 0.8rem; font-weight: 500;
+    padding: 6px 14px; border-radius: 2px;
+    margin-top: 28px;
+  }
+
+  /* HIGHLIGHTS */
+  .highlights { background: var(--cream); }
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .highlight-card {
+    position: relative; overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 3/4;
+  }
+  .highlight-card:first-child { grid-row: span 2; aspect-ratio: auto; }
+  .highlight-photo {
+    width: 100%; height: 100%;
+    background-size: cover; background-position: center;
+    transition: transform 0.6s ease;
+  }
+  .highlight-card:hover .highlight-photo { transform: scale(1.06); }
+  .highlight-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,37,64,0.9) 0%, rgba(10,37,64,0.1) 60%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 28px 24px;
+    transition: all 0.3s ease;
+  }
+  .highlight-tag {
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 6px;
+  }
+  .highlight-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--white);
+    line-height: 1.2; margin-bottom: 8px;
+  }
+  .highlight-desc {
+    font-size: 0.82rem; color: rgba(255,255,255,0);
+    line-height: 1.6;
+    max-height: 0; overflow: hidden;
+    transition: all 0.4s ease;
+  }
+  .highlight-card:hover .highlight-desc {
+    color: rgba(255,255,255,0.8);
+    max-height: 120px;
+  }
+
+  /* TIMELINE */
+  .timeline-section { background: var(--white); }
+  .timeline {
+    max-width: 800px;
+    position: relative;
+  }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 140px; top: 0; bottom: 0; width: 1px;
+    background: var(--border);
+  }
+  .timeline-item {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 32px; margin-bottom: 0;
+    position: relative;
+  }
+  .timeline-item + .timeline-item { border-top: 1px solid var(--border); }
+  .timeline-date {
+    padding: 20px 0;
+    text-align: right;
+    font-size: 0.78rem; color: var(--muted);
+    font-weight: 500; line-height: 1.4;
+  }
+  .timeline-dot {
+    position: absolute; left: 136px; top: 50%;
+    transform: translateY(-50%);
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--border); border: 2px solid var(--white);
+    transition: all 0.2s;
+    z-index: 1;
+  }
+  .timeline-item:hover .timeline-dot {
+    background: var(--gold); border-color: var(--gold-light);
+    transform: translateY(-50%) scale(1.3);
+  }
+  .timeline-content {
+    padding: 20px 0 20px 32px;
+    font-size: 0.95rem; color: var(--text);
+    font-weight: 500; line-height: 1.5;
+  }
+  .timeline-content span {
+    display: block; font-size: 0.82rem; color: var(--muted);
+    font-weight: 400; margin-top: 2px;
+  }
+  .timeline-item.highlight-row .timeline-dot { background: var(--gold); }
+  .timeline-item.highlight-row .timeline-content { color: var(--navy); font-weight: 600; }
+
+  /* VISA */
+  .visa-section { background: var(--navy); color: var(--white); }
+  .visa-section .section-title { color: var(--white); }
+  .visa-section .section-lead { color: rgba(255,255,255,0.65); }
+  .visa-options {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    margin-top: 48px;
+  }
+  .visa-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 36px 32px; border-radius: 4px;
+    transition: all 0.3s;
+  }
+  .visa-card:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(201,168,76,0.4);
+  }
+  .visa-badge {
+    display: inline-block;
+    background: var(--gold); color: var(--navy);
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 2px; margin-bottom: 16px;
+  }
+  .visa-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--white);
+    margin-bottom: 12px;
+  }
+  .visa-card p { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.75; }
+  .visa-requirements {
+    list-style: none; margin-top: 16px;
+  }
+  .visa-requirements li {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 0.85rem; color: rgba(255,255,255,0.7);
+    margin-bottom: 8px; line-height: 1.5;
+  }
+  .visa-requirements li::before { content: '✓'; color: var(--gold); flex-shrink: 0; }
+  .visa-countries {
+    margin-top: 48px; padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .visa-countries-label {
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); margin-bottom: 16px;
+  }
+  .country-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .country-tag {
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.78rem; padding: 4px 12px; border-radius: 2px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #050F1A; padding: 48px 80px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    color: rgba(255,255,255,0.4); font-size: 1rem;
+  }
+  .footer-note { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    section { padding: 60px 32px; }
+    nav, nav.scrolled { padding: 14px 24px; }
+    .hero-content { padding: 48px 32px; }
+    .hero-stats { gap: 28px; }
+    .about-grid, .segment-layout, .visa-options { grid-template-columns: 1fr; }
+    .highlights-grid { grid-template-columns: 1fr 1fr; }
+    .highlight-card:first-child { grid-row: span 1; }
+    .tab-btn { padding: 14px 20px; font-size: 0.82rem; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .nav-links { display: none; }
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Hainan 2026</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#segments">Segments</a></li>
+    <li><a href="#highlights">Highlights</a></li>
+    <li><a href="#timeline">Itinerary</a></li>
+    <li><a href="#visa">How to Join</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Winter Break 2026 · You're Invited</div>
+    <h1 class="hero-title">Hainan,<br><em>Island China</em></h1>
+    <p class="hero-subtitle">Christmas morning on a coral reef. A Guanyin goddess rising from the South China Sea. A tropical island that outsiders almost never find. We're going — come with us.</p>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-label">Dates</div>
+        <div class="hero-stat-value">Dec 18 – 30, 2026</div>
+      </div>
+      <div>
+        <div class="hero-stat-label">Nights</div>
+        <div class="hero-stat-value">12 on the ground</div>
+      </div>
+      <div>
+        <div class="hero-stat-label">Weather</div>
+        <div class="hero-stat-value">26°C · Dry season</div>
+      </div>
+      <div>
+        <div class="hero-stat-label">Party</div>
+        <div class="hero-stat-value">Maggie, Bill & Jordan</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- INVITATION BREAK -->
+<div style="position:relative; height:480px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+  <div style="position:absolute;inset:0;background-image:url('images/invite.jpg');background-size:cover;background-position:center;filter:brightness(0.45)"></div>
+  <div style="position:relative;z-index:2;text-align:center;max-width:720px;padding:0 48px;">
+    <p style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.5rem);color:#fff;line-height:1.45;margin-bottom:28px;">
+      "We want the people we love around us<br>for moments like these."
+    </p>
+    <p style="font-size:0.95rem;color:rgba(255,255,255,0.6);line-height:1.8;max-width:540px;margin:0 auto;">
+      This is a real invitation. Come for a week, come for two — whatever works. Scroll through and see if something grabs you. We think it will.
+    </p>
+    <div style="margin-top:36px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="#segments" style="background:var(--gold);color:var(--navy);text-decoration:none;font-size:0.82rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:14px 28px;border-radius:2px;">See the segments</a>
+      <a href="#highlights" style="border:1px solid rgba(255,255,255,0.3);color:#fff;text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:14px 28px;border-radius:2px;">View highlights</a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-tag">The Destination</div>
+  <div class="about-grid">
+    <div class="about-text fade-up">
+      <h2 class="section-title">China's tropical<br>best-kept secret</h2>
+      <p>Hainan Island is China's southernmost province — think tropical beaches, warm water, and lush rainforest with a distinctly Southeast Asian feel. Historically a major hub for Chinese migration to Southeast Asia, the island has a cultural blend that feels unlike anywhere else in China.</p>
+      <p>It's less crowded than typical mainland China destinations. The Li and Miao ethnic minorities have lived here for thousands of years — their languages, traditions, and crafts are living culture, not museum exhibits. Bill's family has Hmong heritage; the Miao people of Hainan are the same ethnic family, separated by geography and centuries of migration.</p>
+      <p>December is peak season for a reason: dry, sunny, 26°C water. The island runs north to south — Haikou in the north, Sanya on the southern tip. We cover both.</p>
+      <p style="margin-top:24px; padding-top:24px; border-top:1px solid var(--border); font-size:0.92rem; color:var(--muted);">
+        <strong style="color:var(--navy)">Food highlight:</strong> Hainan is the birthplace of Hainanese chicken — poached, served with ginger-scallion oil and rice cooked in chicken broth. You'll find it everywhere. Fresh seafood, coconut-forward dishes, and Southeast Asian influence round out the table.
+      </p>
+    </div>
+    <div class="about-facts fade-up">
+      <div class="fact">
+        <div class="fact-icon">🌡️</div>
+        <div class="fact-label">December Climate</div>
+        <div class="fact-value">26°C · Dry · Sunny</div>
+      </div>
+      <div class="fact">
+        <div class="fact-icon">🛫</div>
+        <div class="fact-label">Flight (LAX → Hainan)</div>
+        <div class="fact-value">~15 hrs via HKG</div>
+      </div>
+      <div class="fact">
+        <div class="fact-icon">🌊</div>
+        <div class="fact-label">Water Temperature</div>
+        <div class="fact-value">26°C · Calm & clear</div>
+      </div>
+      <div class="fact">
+        <div class="fact-icon">🛍️</div>
+        <div class="fact-label">Shopping</div>
+        <div class="fact-value">Duty-free special zone</div>
+      </div>
+      <div class="fact">
+        <div class="fact-icon">🌿</div>
+        <div class="fact-label">Landscape</div>
+        <div class="fact-value">Rainforest + geothermal springs</div>
+      </div>
+      <div class="fact">
+        <div class="fact-icon">🎫</div>
+        <div class="fact-label">Visa (US/UK/CA/AU)</div>
+        <div class="fact-value">Visa-free up to 30 days</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENTS -->
+<section class="segments" id="segments">
+  <div class="section-tag">The Trip</div>
+  <h2 class="section-title">Three segments.<br>Join any or all.</h2>
+  <p class="section-lead">The trip runs north to south. Each segment stands on its own — pick the one that works for you, or do the whole thing.</p>
+
+  <div class="segment-tabs">
+    <button class="tab-btn active" onclick="showSegment('a', this)">A — Haikou &nbsp;<small style="opacity:0.5">Dec 18–21 · 3 nights</small></button>
+    <button class="tab-btn" onclick="showSegment('b', this)">B — Atlantis &nbsp;<small style="opacity:0.5">Dec 21–23 · 2 nights</small></button>
+    <button class="tab-btn" onclick="showSegment('c', this)">C — Sanya &nbsp;<small style="opacity:0.5">Dec 23–30 · 7 nights</small></button>
+  </div>
+
+  <div class="segment-panel active" id="seg-a">
+    <div class="segment-layout">
+      <div class="segment-photo" style="background-image:url('images/haikou.jpg')"></div>
+      <div class="segment-info">
+        <div class="segment-dates">Dec 18 (Fri) — Dec 21 (Mon)</div>
+        <h3 class="segment-name">Haikou</h3>
+        <div class="segment-hotel">Westin Haikou · 3 nights</div>
+        <p class="segment-desc">Haikou is the capital of Hainan — a working city, not a resort town. Maggie lived here from age 8–10 and last visited in 2009. This segment is equal parts personal roots and authentic local experience.</p>
+        <ul class="segment-activities">
+          <li>Traditional tea house breakfast (lao ba cha) — think dim sum but simpler, slower, and more local. A pot of tea, steamed dumplings, coconut milk cakes.</li>
+          <li>Qilou Old Street — 1920s colonial-era arcade shophouses, unchanged since Maggie lived here. Southeast Asian in feel.</li>
+          <li>Roots visit — Maggie's elementary school, the villa where she grew up, and the iconic coconut drink factory around the corner.</li>
+          <li>Hainan Volcanic Cluster Geopark — walk through a 2km lava tube carved 10,000 years ago. Genuinely spectacular geology.</li>
+          <li>Neighborhood night market — real food vendors, not tourist traps. Grilled skewers, fresh fruit, loud and authentic.</li>
+        </ul>
+        <div class="segment-nights">🏙️ The roots segment — most personal</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="segment-panel" id="seg-b">
+    <div class="segment-layout">
+      <div class="segment-photo" style="background-image:url('images/atlantis.jpg')"></div>
+      <div class="segment-info">
+        <div class="segment-dates">Dec 21 (Mon) — Dec 23 (Wed)</div>
+        <h3 class="segment-name">Atlantis Sanya</h3>
+        <div class="segment-hotel">Atlantis Sanya, Imperial Club · 2 nights · Haitang Bay</div>
+        <p class="segment-desc">Atlantis is one of Asia's largest resort-aquarium hybrids — same concept as Atlantis the Palm (Dubai) or Atlantis Paradise Island (Bahamas), but Sanya's own version. The property is themed as an ancient sunken city. 22,000+ marine animals in 12,000 cubic meters of water. Glass tunnels with sharks overhead. A full water park. Private beach. We're in the Imperial Club.</p>
+        <ul class="segment-activities">
+          <li>The Lost Chambers aquarium — glass tunnels, sharks, rays, jellyfish, seahorses, interactive touch pools. Multiple visits across 2 days.</li>
+          <li>Water park with slides and pools</li>
+          <li>Haitang Bay beach — 26°C, calm and clear</li>
+          <li>Imperial Club lounge: breakfast, snacks, evening drinks</li>
+        </ul>
+        <div class="segment-nights">🐠 The aquarium segment — Jordan will not want to leave</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="segment-panel" id="seg-c">
+    <div class="segment-layout">
+      <div class="segment-photo" style="background-image:url('images/sanya.jpg')"></div>
+      <div class="segment-info">
+        <div class="segment-dates">Dec 23 (Wed) — Dec 30 (Wed)</div>
+        <h3 class="segment-name">Sanya</h3>
+        <div class="segment-hotel">Luxury hotel — Yalong Bay or Haitang Bay · 7 nights<br><small style="opacity:0.6; font-size:0.78rem;">Ritz-Carlton · St. Regis · Park Hyatt — confirming late 2026</small></div>
+        <p class="segment-desc">This is the centerpiece — seven nights over Christmas on Sanya's best beach, with a rotation of cultural day trips and full resort days. Christmas Eve and Christmas Day are anchored here.</p>
+        <ul class="segment-activities">
+          <li>Christmas Eve: Tropical Forest Park gondola over jungle canopy, bird show — then hotel Christmas Eve prix-fixe dinner</li>
+          <li>Christmas Day: Wuzhizhou Island — speedboat, glass-bottom boat over coral reef, snorkeling in warm shallow water. Lunch on the island.</li>
+          <li>Nanshan Temple — the 108-meter Guanyin goddess statue standing in the South China Sea</li>
+          <li>Binglanggu Li & Miao Cultural Village — bamboo pole dancing, longhouse village, traditional weaving. Connects to Bill's family heritage.</li>
+          <li>Sunset catamaran on Dec 29 — private charter, 2.5 hrs on the South China Sea</li>
+          <li>Live seafood dinner: pick your fish from the tank</li>
+        </ul>
+        <div class="segment-nights">⭐ The main event — the segment worth flying for</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="highlights" id="highlights">
+  <div class="section-tag">Must-Sees</div>
+  <h2 class="section-title" style="margin-bottom:48px;">Moments you'll<br>remember</h2>
+
+  <div class="highlights-grid">
+    <div class="highlight-card" style="min-height:600px;">
+      <div class="highlight-photo" style="background-image:url('images/reef.jpg'); height:100%"></div>
+      <div class="highlight-overlay">
+        <div class="highlight-tag">Dec 25 · Christmas Morning</div>
+        <div class="highlight-title">Wuzhizhou Island Reef</div>
+        <div class="highlight-desc">Christmas morning. Five-minute speedboat from the hotel pier. Glass floor, live coral, tropical fish below you. Snorkel the reef in 26°C water. Eat the fish you just swam over. Back for Christmas dinner.</div>
+      </div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-photo" style="background-image:url('images/nanshan.jpg'); background-size: 140%; background-position: center 15%;"></div>
+      <div class="highlight-overlay">
+        <div class="highlight-tag">Dec 27 · Day Trip</div>
+        <div class="highlight-title">Nanshan Temple</div>
+        <div class="highlight-desc">You walk a long footbridge out into the South China Sea, and halfway across you realize the statue is 30 stories tall. One of the largest in the world. Go at 9am — by 11am it's packed.</div>
+      </div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-photo" style="background-image:url('images/catamaran.jpg')"></div>
+      <div class="highlight-overlay">
+        <div class="highlight-tag">Dec 29 · Farewell</div>
+        <div class="highlight-title">Sunset Catamaran</div>
+        <div class="highlight-desc">Dec 29. Private charter — just us, the crew, and the South China Sea at golden hour. 2.5 hours before we pack our bags and fly home. Some of us will be crying.</div>
+      </div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-photo" style="background-image:url('images/volcano.jpg')"></div>
+      <div class="highlight-overlay">
+        <div class="highlight-tag">Dec 20 · Haikou</div>
+        <div class="highlight-title">Volcanic Lava Tube</div>
+        <div class="highlight-desc">A 2km underground cave carved by a volcano 10,000 years ago. Walk through it in the morning before tour groups arrive. Genuinely impressive.</div>
+      </div>
+    </div>
+    <div class="highlight-card">
+      <div class="highlight-photo" style="background-image:url('images/binglanggu.jpg')"></div>
+      <div class="highlight-overlay">
+        <div class="highlight-tag">Dec 28 · Day Trip</div>
+        <div class="highlight-title">Binglanggu Cultural Village</div>
+        <div class="highlight-desc">3,000 years of culture, still living. You dance the bamboo pole dance. Bill's family has Hmong roots — the Miao people here are the same ethnic family, separated by centuries and geography. This one is not a tourist stop.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section" id="timeline">
+  <div class="section-tag">Day by Day</div>
+  <h2 class="section-title" style="margin-bottom:48px;">The full itinerary</h2>
+
+  <div class="timeline fade-up">
+    <div class="timeline-item">
+      <div class="timeline-date">Wed Dec 16<br>Evening</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">Depart LAX → Hong Kong (overnight flight)<span>Cathay Pacific via HKG</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Thu Dec 17</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">Hong Kong layover — 8h 55min<span>CX Business Lounge</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Fri Dec 18</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">Arrive Haikou<span>Check in Westin · Easy first evening</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Sat Dec 19</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">Haikou — Qilou Old Street + roots visit<span>Tea house breakfast · Old neighborhood · Coconut drink factory</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Sun Dec 20</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">Haikou — Volcanic Geopark + night market<span>Lava tube · Neighborhood food market</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Mon Dec 21</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">High speed rail → Sanya · Check in Atlantis<span>1.5hr scenic coastal route · Arrive midday</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Tue Dec 22</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">Atlantis — Full aquarium day + beach + water park<span>Multiple aquarium visits · Haitang Bay beach</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Wed Dec 23</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">Move to Sanya luxury hotel<span>Settle in · First Christmas Eve eve</span></div>
+    </div>
+    <div class="timeline-item highlight-row">
+      <div class="timeline-date">Thu Dec 24<br>Christmas Eve</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">Forest Park gondola over jungle canopy → Christmas Eve dinner<span>Aerial cable car · Bird show · Prix-fixe</span></div>
+    </div>
+    <div class="timeline-item highlight-row">
+      <div class="timeline-date">Fri Dec 25<br>Christmas Day</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">Wuzhizhou Island — coral reef + snorkeling → Christmas dinner<span>Speedboat · Glass-bottom boat · Island seafood lunch · Prix-fixe dinner</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Sat Dec 26</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">Resort day<span>Beach · Pool · Full rest</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Sun Dec 27</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">Nanshan Temple → live seafood dinner<span>108m Guanyin statue in the sea · Pick-your-fish dinner</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Mon Dec 28</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">Binglanggu Li & Miao Cultural Village — full day trip<span>80km north · Bamboo dance · Longhouse village · Traditional lunch</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Tue Dec 29</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">Resort day → sunset catamaran<span>Beach morning · Private charter 4–7pm</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Wed Dec 30</div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">HSR → Haikou → fly home<span>Depart HAK 4:50pm → HKG → LAX · Home by evening</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VISA -->
+<section class="visa-section" id="visa">
+  <div class="section-tag" style="color:var(--gold-light)">How to Join</div>
+  <h2 class="section-title">Come for any segment.<br>Visa is easier than you think.</h2>
+  <p class="section-lead">You're welcome to join for any part of the trip. The three segments are independent enough to mix and match.</p>
+
+  <div class="visa-options">
+    <div class="visa-card">
+      <div class="visa-badge">Easiest · Recommended</div>
+      <h3>Hainan Visa-Free</h3>
+      <p>Citizens of 59 countries — including the US, Canada, UK, Australia, New Zealand, Japan, South Korea, and most EU nations — can enter Hainan without a visa for up to 30 days. No advance application. Just bring:</p>
+      <ul class="visa-requirements">
+        <li>Return flight ticket</li>
+        <li>Hotel booking confirmation</li>
+        <li>Travel itinerary within Hainan</li>
+      </ul>
+      <p style="margin-top:16px; color:rgba(255,255,255,0.5); font-size:0.82rem;">A Temporary Entry Permit is issued on arrival at Haikou or Sanya airport. Note: this is valid for Hainan Province only.</p>
+    </div>
+    <div class="visa-card">
+      <div class="visa-badge" style="background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.6);">Alternative</div>
+      <h3>China Tourist Visa</h3>
+      <p>If you prefer a longer-term option or want to travel elsewhere in China before or after, apply for a 10-year multiple-entry tourist visa through a Chinese Consulate.</p>
+      <ul class="visa-requirements">
+        <li>Allow 4–6 weeks to process</li>
+        <li>Apply as soon as you decide you're coming</li>
+        <li>Valid for mainland China + Hainan</li>
+        <li>Useful for future China travel</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="visa-countries">
+    <div class="visa-countries-label">Visa-free eligible countries include</div>
+    <div class="country-tags">
+      <span class="country-tag">🇺🇸 United States</span>
+      <span class="country-tag">🇨🇦 Canada</span>
+      <span class="country-tag">🇬🇧 United Kingdom</span>
+      <span class="country-tag">🇦🇺 Australia</span>
+      <span class="country-tag">🇳🇿 New Zealand</span>
+      <span class="country-tag">🇯🇵 Japan</span>
+      <span class="country-tag">🇰🇷 South Korea</span>
+      <span class="country-tag">🇫🇷 France</span>
+      <span class="country-tag">🇩🇪 Germany</span>
+      <span class="country-tag">🇪🇸 Spain</span>
+      <span class="country-tag">🇮🇹 Italy</span>
+      <span class="country-tag">🇳🇱 Netherlands</span>
+      <span class="country-tag">+ 47 more</span>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING PULL -->
+<div style="background:var(--cream);padding:80px;text-align:center;border-top:1px solid var(--border);">
+  <p style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--navy);line-height:1.3;margin-bottom:20px;">
+    December in Hainan.<br><em style="color:var(--gold)">You should be there.</em>
+  </p>
+  <p style="font-size:0.95rem;color:var(--muted);max-width:480px;margin:0 auto 36px;line-height:1.8;">
+    Let Maggie or Bill know which segment works for you. The visa is easy. The flights are direct from LA. We'll do the rest.
+  </p>
+  <a href="#segments" style="display:inline-block;background:var(--navy);color:#fff;text-decoration:none;font-size:0.82rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:16px 36px;border-radius:2px;">Pick your segment →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Hainan Winter Break · December 2026</div>
+  <div class="footer-note">Maggie · Bill · Jordan</div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Hero image load animation
+  const heroBg = document.getElementById('heroBg');
+  heroBg.addEventListener('load', () => heroBg.classList.add('loaded'));
+  setTimeout(() => heroBg.classList.add('loaded'), 100);
+
+  // Segment tabs
+  function showSegment(id, btn) {
+    document.querySelectorAll('.segment-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('seg-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Scroll fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
